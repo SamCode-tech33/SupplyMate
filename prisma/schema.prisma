@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum Role {
+  EMPLOYEE
+  ADMIN
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum Category {
+  OFFICE_SUPPLIES
+  ELECTRONICS
+  FURNITURE
+  SOFTWARE
+  OTHER
+}
+
+// ─── Models ──────────────────────────────────────────────────────────────────
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  role      Role     @default(EMPLOYEE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  requests         PurchaseRequest[] @relation("RequesterRequests")
+  reviewedRequests PurchaseRequest[] @relation("ReviewerRequests")
+
+  @@map("users")
+}
+
+model PurchaseRequest {
+  id          String        @id @default(cuid())
+  title       String
+  description String?
+  amount      Decimal       @db.Decimal(10, 2)
+  category    Category      @default(OTHER)
+  status      RequestStatus @default(PENDING)
+  requestDate DateTime      @default(now())
+  reviewedAt  DateTime?
+  reviewNote  String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  requesterId String
+  requester   User   @relation("RequesterRequests", fields: [requesterId], references: [id])
+
+  reviewerId String?
+  reviewer   User?  @relation("ReviewerRequests", fields: [reviewerId], references: [id])
+
+  @@map("purchase_requests")
+}
