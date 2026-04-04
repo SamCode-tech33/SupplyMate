@@ -3,11 +3,16 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useId } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const id = useId();
+  const emailId = `${id}-email`;
+  const passwordId = `${id}-password`;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,12 +35,11 @@ export default function LoginPage() {
     }
 
     router.push("/dashboard");
-    router.refresh();
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="w-full max-w-sm bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+    <main className="min-h-screen flex items-center justify-center bg-slate-800">
+      <div className="w-full max-w-sm bg-slate-200 rounded-xl shadow-sm border border-gray-200 p-8">
         <h1 className="text-2xl font-semibold text-gray-900 mb-1">
           SupplyMate
         </h1>
@@ -50,12 +54,12 @@ export default function LoginPage() {
               Email
             </label>
             <input
-              id="email"
+              id={emailId}
               name="email"
               type="email"
               required
               autoComplete="email"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border text-black border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
 
@@ -67,12 +71,12 @@ export default function LoginPage() {
               Password
             </label>
             <input
-              id="password"
+              id={passwordId}
               name="password"
               type="password"
               required
               autoComplete="current-password"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border text-black border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
 
@@ -85,15 +89,15 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors"
+            className="w-full bg-blue-500 hover:bg-blue-700 disabled:bg-blue-400 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors"
           >
             {loading ? "Signing in..." : "Sign in"}
           </button>
         </form>
 
         <div className="mt-6 pt-6 border-t border-gray-100">
-          <p className="text-xs text-gray-400 mb-2">Demo accounts</p>
-          <div className="space-y-1 text-xs text-gray-500">
+          <p className="text-xs text-gray-900 mb-2">Demo accounts</p>
+          <div className="space-y-1 text-xs text-black">
             <p>admin@example.com / admin1234</p>
             <p>alice@example.com / employee1234</p>
           </div>
