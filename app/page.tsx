@@ -5,6 +5,7 @@ import {
   MarketingCardsAnimation,
   MarketingStatementsAnimation,
 } from "@/components/MarketingAnimations";
+import PricingCard from "@/components/PricingCard";
 
 export default function Home() {
   return (
@@ -107,6 +108,47 @@ export default function Home() {
       {/* Marketing Section */}
       <MarketingCardsAnimation />
       <MarketingStatementsAnimation />
+
+      {/* Pricing Section */}
+
+      <div className="flex justify-around items-center bg-slate-300 h-[90vh]">
+        <PricingCard offsetX={500}>
+          <h1 className="text-4xl">Studio Plan</h1>
+          <div className="text-left text-lg">
+            <p>- 10 Requisitions a month</p>
+            <p>- Paid supply upgrades</p>
+            <p>- Returns unavailable</p>
+          </div>
+          <p className="text-2xl">$50/Mo.</p>
+          <div className="p-4 border border-slate-200 rounded-xl w-1/2 hover:bg-slate-600">
+            Inquire
+          </div>
+        </PricingCard>
+        <PricingCard offsetX={0}>
+          <h1 className="text-4xl">Office Plan</h1>
+          <div className="text-left text-lg">
+            <p>- 50 requisitions a month</p>
+            <p>- Paid supply upgrades</p>
+            <p>- Return supplies for 50% cost</p>
+          </div>
+          <p className="text-2xl">$200/Mo.</p>
+          <div className="p-4 border border-slate-200 rounded-xl w-1/2 hover:bg-slate-600">
+            Inquire
+          </div>
+        </PricingCard>
+        <PricingCard offsetX={-500}>
+          <h1 className="text-4xl">Enterprise Plan</h1>
+          <div className="text-left text-lg">
+            <p>- Unlimited requisitions</p>
+            <p>- Free supply upgrades</p>
+            <p>- Return supplies for 50% cost</p>
+          </div>
+          <p className="text-2xl">$500/Mo.</p>
+          <div className="p-4 border border-slate-200 rounded-xl w-1/2 hover:bg-slate-600">
+            Inquire
+          </div>
+        </PricingCard>
+      </div>
     </main>
   );
 }

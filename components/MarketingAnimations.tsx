@@ -187,7 +187,7 @@ export const MarketingStatementsAnimation = () => {
   // each h1 gets its own range — they trigger one after the other
   const y1 = useTransform(scrollYProgress, [0, 0.2], [600, 0]);
   const y2 = useTransform(scrollYProgress, [0.2, 0.4], [600, 0]);
-  const y3 = useTransform(scrollYProgress, [0.4, 0.6], [600, 0]);
+  const y3 = useTransform(scrollYProgress, [0.4, 0.55], [600, 0]);
 
   const smoothY1 = useSpring(y1, { stiffness: 60, damping: 20, mass: 1 });
   const smoothY2 = useSpring(y2, { stiffness: 60, damping: 20, mass: 1 });
@@ -196,7 +196,7 @@ export const MarketingStatementsAnimation = () => {
   return (
     <div ref={ref} className="relative h-[150vh]">
       <div className="sticky top-0 flex justify-center flex-col items-center h-screen bg-slate-800">
-        <motion.h1
+        <motion.div
           style={{ y: smoothY1 }}
           className="text-[80px] text-white font-extrabold flex items-center"
         >
@@ -217,8 +217,8 @@ export const MarketingStatementsAnimation = () => {
           </svg>
 
           <h1>Request & Recieve</h1>
-        </motion.h1>
-        <motion.h1
+        </motion.div>
+        <motion.div
           style={{ y: smoothY2 }}
           className="text-[80px] text-white font-extrabold flex items-center"
         >
@@ -239,7 +239,7 @@ export const MarketingStatementsAnimation = () => {
           </svg>
 
           <h1>With Secured Approval</h1>
-        </motion.h1>
+        </motion.div>
         <motion.div
           style={{ y: smoothY3 }}
           className="text-[80px] text-white font-extrabold flex items-center mb-16"
