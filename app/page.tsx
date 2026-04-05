@@ -7,34 +7,31 @@ import {
 } from "@/components/MarketingAnimations";
 import PricingCard from "@/components/PricingCard";
 import Footer from "@/components/Footer";
+import { BottomNav, TopNav } from "@/components/BottomTopNav";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const [showBottomNav, setShowBottomNav] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowBottomNav(true);
+      } else {
+        setShowBottomNav(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
   return (
     <main>
       {/* Navigation Section */}
-      <nav className="flex flex-1 items-center justify-between font-sans p-6 z-[20]">
-        <div>
-          <Link href="/" className="mx-4 text-3xl font-extrabold">
-            SupplyMate
-          </Link>
-        </div>
-        <div className="flex items-center">
-          <Link
-            href="/login"
-            className="mx-4 border py-3 px-7 border-white rounded-2xl text-lg font-bold relative overflow-hidden group nav-link"
-          >
-            <span className="nav-text-default">Log in</span>
-            <span className="nav-text-hover">Log in</span>
-          </Link>
-          <Link
-            href="/signup"
-            className="mx-4 border py-3 px-6 bg-white rounded-2xl text-black text-lg font-bold relative overflow-hidden group nav-link"
-          >
-            <span className="nav-text-default">Sign up</span>
-            <span className="nav-text-hover">Sign up</span>
-          </Link>
-        </div>
-      </nav>
+      <TopNav />
+      <BottomNav show={showBottomNav} />
 
       {/* Header Section */}
       <div className="flex justify-end items-end z-[-2] h-[89.5vh]">
