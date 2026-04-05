@@ -6,6 +6,7 @@ import {
   MarketingStatementsAnimation,
 } from "@/components/MarketingAnimations";
 import PricingCard from "@/components/PricingCard";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -111,7 +112,7 @@ export default function Home() {
 
       {/* Pricing Section */}
 
-      <div className="flex justify-around items-center bg-slate-300 h-[90vh]">
+      <div className="flex justify-around items-center bg-slate-300 h-[100vh]">
         <PricingCard offsetX={500}>
           <h1 className="text-4xl">Studio Plan</h1>
           <div className="text-left text-lg">
@@ -149,6 +150,7 @@ export default function Home() {
           </div>
         </PricingCard>
       </div>
+      <Footer />
     </main>
   );
 }

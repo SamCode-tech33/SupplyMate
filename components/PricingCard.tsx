@@ -126,7 +126,7 @@ const PricingCard = ({ children, offsetX }: PricingCardProps) => {
       }}
       initial={{ x: offsetX, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 60, damping: 20 }}
+      transition={{ type: "spring", stiffness: 40, damping: 30 }}
     >
       {children}
       <canvas
