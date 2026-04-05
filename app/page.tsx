@@ -1,5 +1,10 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
+import {
+  MarketingCardsAnimation,
+  MarketingStatementsAnimation,
+} from "@/components/MarketingAnimations";
 
 export default function Home() {
   return (
@@ -14,14 +19,14 @@ export default function Home() {
         <div className="flex items-center">
           <Link
             href="/login"
-            className="mx-4 border py-4 px-6 border-white rounded-2xl text-lg font-bold relative overflow-hidden group nav-link"
+            className="mx-4 border py-3 px-7 border-white rounded-2xl text-lg font-bold relative overflow-hidden group nav-link"
           >
-            <span className="nav-text-default">Login</span>
-            <span className="nav-text-hover">Login</span>
+            <span className="nav-text-default">Log in</span>
+            <span className="nav-text-hover">Log in</span>
           </Link>
           <Link
             href="/signup"
-            className="mx-4 border py-4 px-6 bg-white rounded-2xl text-black text-lg font-bold relative overflow-hidden group nav-link"
+            className="mx-4 border py-3 px-6 bg-white rounded-2xl text-black text-lg font-bold relative overflow-hidden group nav-link"
           >
             <span className="nav-text-default">Sign up</span>
             <span className="nav-text-hover">Sign up</span>
@@ -30,7 +35,7 @@ export default function Home() {
       </nav>
 
       {/* Header Section */}
-      <div className="flex justify-end items-end z-[-2]">
+      <div className="flex justify-end items-end z-[-2] h-[89.5vh]">
         <div className="text-white font-bold text-[64px] opacity-70 z-10 ml-10 mb-12">
           Centralize your supply requisitions with SupplyMate
         </div>
@@ -98,6 +103,10 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Marketing Section */}
+      <MarketingCardsAnimation />
+      <MarketingStatementsAnimation />
     </main>
   );
 }
