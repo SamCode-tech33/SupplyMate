@@ -12,7 +12,7 @@ export default async function DashboardLayout({
   if (!session) redirect("/login");
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-700">
       <nav className="bg-slate-100 border-b border-gray-200 px-6 py-4 flex items-center justify-between">
         <Link href="/" className="text-lg font-semibold text-gray-900">
           SupplyMate
@@ -30,7 +30,9 @@ export default async function DashboardLayout({
           </a>
         </div>
       </nav>
-      <main className="max-w-5xl mx-auto px-6 py-8">{children}</main>
+      <main className="flex justify-center items-center px-6 py-8">
+        {children}
+      </main>
     </div>
   );
 }
