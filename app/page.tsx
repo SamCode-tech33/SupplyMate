@@ -9,7 +9,6 @@ import PricingCard from "@/components/PricingCard";
 import Footer from "@/components/Footer";
 import { BottomNav, TopNav } from "@/components/BottomTopNav";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
 export default function Home() {
   const [showBottomNav, setShowBottomNav] = useState(false);
@@ -35,9 +34,9 @@ export default function Home() {
 
       {/* Header Section */}
       <div className="flex justify-end items-end z-[-2] h-[89.5vh]">
-        <div className="text-white font-bold text-[64px] opacity-70 z-10 ml-10 mb-12">
+        <h1 className="text-white font-bold text-[64px] opacity-70 z-10 ml-10 mb-12">
           Centralize your supply requisitions with SupplyMate
-        </div>
+        </h1>
         <div className="bg-slate-900 w-1/2 h-[85vh] z-[-1] opacity-60">
           <video
             autoPlay
