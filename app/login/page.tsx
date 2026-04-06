@@ -5,7 +5,6 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useId } from "react";
 import Link from "next/link";
-import { main } from "framer-motion/client";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -61,7 +60,6 @@ export default function LoginPage() {
                 className="w-full p-3 border text-black border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
               />
             </div>
-
             <div>
               <input
                 id={passwordId}

@@ -9,7 +9,6 @@ import PricingCard from "@/components/PricingCard";
 import Footer from "@/components/Footer";
 import { BottomNav, TopNav } from "@/components/BottomTopNav";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
 export default function Home() {
   const [showBottomNav, setShowBottomNav] = useState(false);
