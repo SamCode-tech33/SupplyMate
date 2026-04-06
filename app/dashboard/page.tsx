@@ -24,19 +24,19 @@ export default async function DashboardPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between w-[50vw] my-12">
         <div>
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-4xl font-bold text-slate-300">
             {isAdmin ? "All Requests" : "My Requests"}
           </h2>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-md text-slate-300 mt-2">
             {requests.length} request{requests.length !== 1 ? "s" : ""}
           </p>
         </div>
         {!isAdmin && (
           <a
             href="/dashboard/new"
-            className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+            className="bg-slate-300 hover:bg-slate-400 text-black text-md font-medium px-4 py-2 rounded-lg transition-colors"
           >
             New request
           </a>
@@ -48,7 +48,7 @@ export default async function DashboardPage() {
           <p className="text-sm">No requests yet</p>
         </div>
       ) : (
-        <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
+        <div className="bg-slate-200 rounded-xl border border-gray-200 divide-y divide-gray-100">
           {requests.map((req) => (
             <div
               key={req.id}
