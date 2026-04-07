@@ -118,11 +118,48 @@ NEXTAUTH_URL=http://localhost:3000
 
 ---
 
-## Area of Focus
+## Area of Focus — UI/UX & Frontend
 
-> **Infrastructure & DX + Business Logic**
+The primary investment beyond core functionality was in crafting a polished,
+production-feeling frontend experience.
 
-// to fill in as I build
+### Landing page
+
+- Full-screen video background with overlaid navigation and hero copy
+- Poster image on video element eliminates blank flash during load
+- Scroll-driven animations using Framer Motion — five feature cards converge
+  to a central point as the user scrolls, followed by staggered headline reveals
+- Pricing cards animate out from center on scroll with a sparkle effect on hover
+- All CTAs link directly into the authenticated app
+
+### Dashboard
+
+- Staggered fade-in and slide-up entrance animation on each request row
+- Skeleton loading state via `loading.tsx` renders instantly while server fetches data
+- Status badges visually distinguish Pending, Approved, and Rejected states at a glance
+- Approve and Reject actions are contextually shown only on pending requests
+- Admin and employee views are role-aware with no layout shift between roles
+
+### Microinteractions
+
+- All interactive elements have hover and active state transitions
+- Form submission states (loading, error) give immediate feedback
+- Review confirmation page adapts copy and color to the action (green for approve, red for reject)
+
+### Performance
+
+- Heavy Framer Motion components dynamically imported with `ssr: false` — code
+  split into separate chunks downloaded only when needed, reducing initial bundle size
+- `loading.tsx` skeleton gives instant visual feedback before data arrives
+- Video poster image renders immediately while video streams in the background
+
+### Component architecture
+
+- Client/server boundary respected throughout — server components fetch data,
+  client components handle interactivity and animation
+- Serialization layer between server and client for Prisma types
+- Reusable `RequestList` component with typed props handles both employee and admin views
+- Named export dynamic imports using `.then((mod) => mod.ComponentName)` pattern
 
 ---
 
