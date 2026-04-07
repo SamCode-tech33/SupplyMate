@@ -1,9 +1,11 @@
 import { auth } from "@/lib/auth";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client";
-import { Role, RequestStatus } from "../generated/prisma/enums";
+import { Role } from "../generated/prisma/enums";
+import type { RequestStatus } from "../generated/prisma/enums";
+import RequestList from "@/components/RequestList";
 
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
 const statusStyles: Record<RequestStatus, string> = {
@@ -21,6 +23,15 @@ export default async function DashboardPage() {
     include: { requester: true, reviewer: true },
     orderBy: { createdAt: "desc" },
   });
+
+  const serializedRequests = requests.map((req) => ({
+    ...req,
+    amount: Number(req.amount),
+    requestDate: req.requestDate.toISOString(),
+    reviewedAt: req.reviewedAt?.toISOString() ?? null,
+    createdAt: req.createdAt.toISOString(),
+    updatedAt: req.updatedAt.toISOString(),
+  }));
 
   return (
     <div>
@@ -48,54 +59,11 @@ export default async function DashboardPage() {
           <p className="text-sm">No requests yet</p>
         </div>
       ) : (
-        <div className="bg-slate-200 rounded-xl border border-gray-200 divide-y divide-gray-100">
-          {requests.map((req) => (
-            <div
-              key={req.id}
-              className="px-6 py-4 flex items-center justify-between gap-4"
-            >
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <p className="text-sm font-medium text-gray-900 truncate">
-                    {req.title}
-                  </p>
-                  <span
-                    className={`text-xs px-2 py-0.5 rounded-full font-medium ${statusStyles[req.status]}`}
-                  >
-                    {req.status}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 text-xs text-gray-400">
-                  {isAdmin && <span>{req.requester.name}</span>}
-                  <span>¥{Number(req.amount).toLocaleString()}</span>
-                  <span>{req.category.replace("_", " ")}</span>
-                  <span>{new Date(req.requestDate).toLocaleDateString()}</span>
-                </div>
-                {req.reviewNote && (
-                  <p className="text-xs text-gray-400 mt-1 italic">
-                    "{req.reviewNote}"
-                  </p>
-                )}
-              </div>
-              {isAdmin && req.status === RequestStatus.PENDING && (
-                <div className="flex gap-2 shrink-0">
-                  <a
-                    href={`/dashboard/review/${req.id}?action=approve`}
-                    className="text-xs bg-green-50 hover:bg-green-100 text-green-700 px-3 py-1.5 rounded-lg transition-colors font-medium"
-                  >
-                    Approve
-                  </a>
-                  <a
-                    href={`/dashboard/review/${req.id}?action=reject`}
-                    className="text-xs bg-red-50 hover:bg-red-100 text-red-700 px-3 py-1.5 rounded-lg transition-colors font-medium"
-                  >
-                    Reject
-                  </a>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        <RequestList
+          requests={serializedRequests}
+          isAdmin={isAdmin}
+          statusStyles={statusStyles}
+        />
       )}
     </div>
   );
