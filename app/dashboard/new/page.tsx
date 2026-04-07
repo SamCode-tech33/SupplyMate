@@ -59,8 +59,8 @@ export default function NewRequestPage() {
   return (
     <div className="flex flex-col w-[40vw]">
       <div className="my-12">
-        <h2 className="text-3xl font-bold text-white">New Request</h2>
-        <p className="text-md text-white mt-2">
+        <h2 className="text-3xl font-bold text-slate-100">New Request</h2>
+        <p className="text-md text-slate-100 mt-2">
           Submit a new supplies purchase request for approval
         </p>
       </div>
