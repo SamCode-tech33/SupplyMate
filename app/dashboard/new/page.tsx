@@ -161,7 +161,7 @@ export default function NewRequestPage() {
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 px-4 py-2 text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 disabled:bg-blue-400 rounded-lg transition-colors"
+            className="flex-1 px-4 py-2 text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 disabled:bg-slate-400 rounded-lg transition-colors"
           >
             {loading ? "Submitting..." : "Submit request"}
           </button>

@@ -105,6 +105,7 @@ export default function LoginPage() {
             loop
             muted
             playsInline
+            poster="/poster.jpg"
             className="w-full h-full rounded-3xl object-cover"
           >
             <source src="/supply-panning.mp4" type="video/mp4" />

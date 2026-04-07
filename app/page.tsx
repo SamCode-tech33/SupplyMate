@@ -1,14 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import {
-  MarketingCardsAnimation,
-  MarketingStatementsAnimation,
-} from "@/components/MarketingAnimations";
-import PricingCard from "@/components/PricingCard";
 import Footer from "@/components/Footer";
 import { BottomNav, TopNav } from "@/components/BottomTopNav";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const PricingCard = dynamic(() => import("@/components/PricingCard"), {
+  ssr: false,
+});
+
+const MarketingCardsAnimation = dynamic(
+  () =>
+    import("@/components/MarketingAnimations").then(
+      (mod) => mod.MarketingCardsAnimation,
+    ),
+  { ssr: false },
+);
+
+const MarketingStatementsAnimation = dynamic(
+  () =>
+    import("@/components/MarketingAnimations").then(
+      (mod) => mod.MarketingStatementsAnimation,
+    ),
+  { ssr: false },
+);
 
 export default function Home() {
   const [showBottomNav, setShowBottomNav] = useState(false);
@@ -43,6 +59,7 @@ export default function Home() {
             loop
             muted
             playsInline
+            poster="/poster.jpg"
             className="isolate w-full h-full z-0 rounded-md absolute object-cover left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
           >
             <source src="/supply-panning.mp4" type="video/mp4" />
