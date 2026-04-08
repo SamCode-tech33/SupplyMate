@@ -171,4 +171,4 @@ production-feeling frontend experience.
 
 ## Time Spent
 
-// to fill in at the end
+- A total of 7.5 hours

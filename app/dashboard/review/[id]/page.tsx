@@ -3,16 +3,24 @@
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, useId } from "react";
 
+// Review Page ───────────────────────────────────────────────────────────────
+// Allows admins to approve or reject a pending purchase request.
+// Action and request ID are read from the URL — no extra state needed.
+
 export default function ReviewPage() {
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
   const action = searchParams.get("action") as "approve" | "reject";
+  const isApprove = action === "approve";
+  const reviewNoteId = useId();
+
   const [reviewNote, setReviewNote] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState<string | null>(null);
 
+  // Fetch the request title on mount to display in the form heading
   useEffect(() => {
     fetch(`/api/requests/${params.id}`)
       .then((res) => {
@@ -25,10 +33,6 @@ export default function ReviewPage() {
         setTitle(data.title);
       });
   }, [params.id]);
-
-  const isApprove = action === "approve";
-
-  const reviewNoteId = useId();
 
   async function handleSubmit(e: React.SubmitEvent) {
     e.preventDefault();
@@ -54,7 +58,8 @@ export default function ReviewPage() {
   }
 
   return (
-    <div className="w-[40vw]">
+    <main className="w-[40vw]">
+      {/* Page header ──────────────────────────────────────────── */}
       <div className="my-12">
         <h2 className="text-4xl font-semibold text-slate-100">
           {isApprove ? "Approve Request" : "Reject Request"}
@@ -65,15 +70,21 @@ export default function ReviewPage() {
             : "Confirm rejection of this purchase request"}
         </p>
       </div>
-
+      {/* Review form ───────────────────────────────────────────── */}
       <form
         onSubmit={handleSubmit}
+        aria-label={isApprove ? "Approve request form" : "Reject request form"}
         className="bg-slate-100 rounded-xl border p-6 space-y-5 h-[34vh]"
       >
         <div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">
+          <h2
+            aria-live="polite"
+            aria-atomic="true"
+            className="text-xl font-semibold text-gray-900 mb-2"
+          >
             {title ?? "Loading..."}
           </h2>
+          {/* Textarea label — htmlFor must match textarea id */}
           <label
             htmlFor="reviewNote"
             className="block text-sm font-medium text-gray-700 mb-1"
@@ -91,16 +102,22 @@ export default function ReviewPage() {
                 ? "e.g. Please order from the preferred vendor list"
                 : "e.g. We already have this covered"
             }
+            aria-describedby={error ? "review-error" : undefined}
             className="w-full h-[140px] px-3 py-2 border mb-2 border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-transparent text-black resize-none"
           />
         </div>
 
+        {/* Error message — announced to screen readers via role="alert" */}
         {error && (
-          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+          <p
+            role="alert"
+            className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2"
+          >
             {error}
           </p>
         )}
 
+        {/* Actions ──────────────────────────────────────────────── */}
         <div className="flex gap-3 pt-1">
           <button
             type="button"
@@ -112,6 +129,7 @@ export default function ReviewPage() {
           <button
             type="submit"
             disabled={loading}
+            aria-busy={loading}
             className={`flex-1 px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors ${
               isApprove
                 ? "bg-green-700 hover:bg-green-800 disabled:bg-green-400"
@@ -126,6 +144,6 @@ export default function ReviewPage() {
           </button>
         </div>
       </form>
-    </div>
+    </main>
   );
 }

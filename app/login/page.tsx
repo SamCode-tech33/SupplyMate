@@ -14,6 +14,7 @@ export default function LoginPage() {
   const id = useId();
   const emailId = `${id}-email`;
   const passwordId = `${id}-password`;
+  const errorId = `${id}-error`;
 
   async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -40,16 +41,32 @@ export default function LoginPage() {
 
   return (
     <main className="flex items-center justify-between w-[100vw] z-[-10]">
-      {/* Login half */}
-      <div className="w-[40vw] h-screen bg-slate-200 p-12">
-        <Link href="/" className="text-4xl font-bold text-slate-800">
-          SupplyMate
-        </Link>
-        <p className="text-[48px] text-black my-16 font-bold">Sign in</p>
+      {/* Auth Section  ───────────────────────────────────────────────── */}
+      <section
+        aria-label="login"
+        className="w-[40vw] h-screen bg-slate-200 p-12 flex flex-col min-h-screen"
+      >
+        {/* Brand / Home link */}
+        <header>
+          <Link href="/" className="text-4xl font-bold text-slate-800">
+            SupplyMate
+          </Link>
+        </header>
 
-        <form onSubmit={handleSubmit} className="flex flex-col space-around">
-          <div className="space-y-4">
+        {/* Page heading */}
+        <h1 className="text-[48px] text-black my-16 font-bold">Sign in</h1>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="flex flex-col flex-1">
+          {/* Input group */}
+          <fieldset className="space-y-4">
+            <legend className="sr-only">Login credentials</legend>
+
+            {/* Email */}
             <div>
+              <label htmlFor={emailId} className="sr-only">
+                Email address
+              </label>
               <input
                 id={emailId}
                 name="email"
@@ -60,7 +77,12 @@ export default function LoginPage() {
                 className="w-full p-3 border text-black border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
               />
             </div>
+
+            {/* Password */}
             <div>
+              <label htmlFor={passwordId} className="sr-only">
+                Password
+              </label>
               <input
                 id={passwordId}
                 name="password"
@@ -72,34 +94,48 @@ export default function LoginPage() {
               />
             </div>
 
+            {/* Error message */}
             {error && (
-              <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+              <p
+                id={errorId}
+                role="alert"
+                className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2"
+              >
                 {error}
               </p>
             )}
-          </div>
+          </fieldset>
 
+          {/* Submit */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-slate-500 hover:bg-slate-700 text-white font-medium py-3 px-4 rounded-xl transition-colors mt-[360px]"
+            aria-busy={loading}
+            className="w-full bg-slate-500 hover:bg-slate-700 text-white font-medium py-3 px-4 rounded-xl transition-colors mt-auto"
           >
             {loading ? "Signing in..." : "Sign in"}
           </button>
         </form>
 
-        <div className="mt-6 pt-6 border-t border-gray-100">
-          <p className="text-xs text-gray-900 mb-2">Demo accounts</p>
-          <div className="space-y-1 text-xs text-black">
-            <p>admin@example.com / admin1234</p>
-            <p>alice@example.com / employee1234</p>
-          </div>
-        </div>
-      </div>
+        {/* Demo accounts */}
+        <aside className="mt-6 pt-6 border-t border-gray-100">
+          <h2 className="text-xs text-gray-900 mb-2 font-medium">
+            Demo accounts
+          </h2>
+          <ul className="space-y-1 text-xs text-black">
+            <li>admin@example.com / admin1234</li>
+            <li>alice@example.com / employee1234</li>
+          </ul>
+        </aside>
+      </section>
 
-      {/* Header half */}
-      <div className="flex justify-center items-center bg-slate-200 w-[60vw] z-[-2] h-screen">
+      {/* Visual Marketing Section ───────────────────────────────────────────────── */}
+      <aside
+        aria-hidden="true"
+        className="flex justify-center items-center bg-slate-200 w-[60vw] z-[-2] h-screen"
+      >
         <div className="relative w-[56vw] h-[92vh]">
+          {/* Decorative video */}
           <video
             autoPlay
             loop
@@ -110,20 +146,27 @@ export default function LoginPage() {
           >
             <source src="/supply-panning.mp4" type="video/mp4" />
           </video>
+
+          {/* Overlay content */}
           <div className="absolute inset-0 flex flex-col justify-top items-left z-10">
-            <h1 className="text-white font-bold text-[36px] mx-16 mt-12">
-              One location for all needs.
-            </h1>
-            <div className="text-white font-semibold text-xl z-10 mx-16 border-b border-gray-300 pb-4">
-              Single account for all your supplies.
+            <div>
+              <p className="text-white font-bold text-[36px] mx-16 mt-12">
+                One location for all needs.
+              </p>
+              <p className="text-white font-semibold text-xl z-10 mx-16 border-b border-gray-300 pb-4">
+                Single account for all your supplies.
+              </p>
             </div>
-            <div className="flex items-center mx-16 mt-[600px]">
+
+            {/* Store links */}
+            <nav className="flex items-center mx-16 mt-[600px]">
               <Link
                 href="https://www.apple.com/app-store/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center border-2 border-white w-48 p-2 rounded-lg justify-center mr-4"
               >
+                <span className="sr-only">Download on the App Store</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="40"
@@ -147,6 +190,7 @@ export default function LoginPage() {
                 rel="noopener noreferrer"
                 className="flex items-center border-2 border-white w-48 p-2 rounded-lg justify-center"
               >
+                <span className="sr-only">Get it on Google Play</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="40"
@@ -163,10 +207,10 @@ export default function LoginPage() {
                   <p className="text-lg">Google Play</p>
                 </div>
               </Link>
-            </div>
+            </nav>
           </div>
         </div>
-      </div>
+      </aside>
     </main>
   );
 }

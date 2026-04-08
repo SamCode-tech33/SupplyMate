@@ -18,12 +18,12 @@ export default function NewRequestPage() {
 
   // input ids following standard useId protocol
   const id = useId();
-  const titleId = `${id}-email`;
+  const titleId = `${id}-title`;
   const descriptionId = `${id}-description`;
   const amountId = `${id}-amount`;
   const categoryId = `${id}-category`;
 
-  // on submit await fetch to /api/requests with user entered form data
+  // Handle form submission - Prevent default form reload - Send request to API - Handle errors + redirect on success
   async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
@@ -31,128 +31,151 @@ export default function NewRequestPage() {
 
     const formData = new FormData(e.currentTarget);
 
-    const res = await fetch("/api/requests", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: formData.get("title"),
-        description: formData.get("description"),
-        amount: Number(formData.get("amount")),
-        category: formData.get("category"),
-      }),
-    });
+    try {
+      const res = await fetch("/api/requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: formData.get("title"),
+          description: formData.get("description"),
+          amount: Number(formData.get("amount")),
+          category: formData.get("category"),
+        }),
+      });
 
-    setLoading(false);
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error ?? "Something went wrong");
+        return;
+      }
 
-    // error handling for if something happened when sending the data to the API
-    if (!res.ok) {
-      const data = await res.json();
-      setError(data.error ?? "Something went wrong");
-      return;
+      router.push("/dashboard");
+      router.refresh();
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
     }
-
-    // reroute to user dashboard after submitting request
-    router.push("/dashboard");
-    router.refresh();
   }
 
   return (
-    <div className="flex flex-col w-[40vw]">
-      <div className="my-12">
-        <h2 className="text-3xl font-bold text-slate-100">New Request</h2>
+    <section
+      className="flex flex-col w-[40vw]"
+      aria-labelledby="new-request-heading"
+    >
+      {/* Page Header */}
+      <header className="my-12">
+        <h1 className="text-3xl font-bold text-slate-100">New Request</h1>
         <p className="text-md text-slate-100 mt-2">
           Submit a new supplies purchase request for approval
         </p>
-      </div>
+      </header>
 
+      {/* Form */}
       <form
         onSubmit={handleSubmit}
         className="bg-slate-100 rounded-xl p-6 space-y-8"
+        noValidate
       >
-        <div>
-          <label
-            htmlFor="title"
-            className="block text-sm font-medium text-black mb-1"
-          >
-            Title
-          </label>
-          <input
-            id={titleId}
-            name="title"
-            type="text"
-            required
-            placeholder="e.g. Monitor Purchase"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-black focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-          />
-        </div>
+        <fieldset disabled={loading} className="space-y-6">
+          <legend className="sr-only">Request details</legend>
 
-        <div>
-          <label
-            htmlFor="description"
-            className="block text-sm font-medium text-black mb-1"
-          >
-            Description
-            <span className="text-gray-400 font-normal ml-1">(optional)</span>
-          </label>
-          <textarea
-            id={descriptionId}
-            name="description"
-            rows={3}
-            placeholder="Provide any additional context..."
-            className="w-full p-3 border border-gray-300 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent resize-none"
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
+          {/* Title */}
           <div>
             <label
-              htmlFor="amount"
+              htmlFor={titleId}
               className="block text-sm font-medium text-black mb-1"
             >
-              Amount (¥)
+              Title
             </label>
             <input
-              id={amountId}
-              name="amount"
-              type="number"
+              id={titleId}
+              name="title"
+              type="text"
               required
-              min={1}
-              placeholder="0"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+              placeholder="e.g. Monitor Purchase"
+              autoComplete="off"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-black focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
             />
           </div>
 
+          {/* Description */}
           <div>
             <label
-              htmlFor="category"
+              htmlFor={descriptionId}
               className="block text-sm font-medium text-black mb-1"
             >
-              Category
+              Description
+              <span className="text-gray-400 font-normal ml-1">(optional)</span>
             </label>
-            <select
-              id={categoryId}
-              name="category"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white"
-            >
-              {CATEGORIES.map((cat) => (
-                <option key={cat.value} value={cat.value}>
-                  {cat.label}
-                </option>
-              ))}
-            </select>
+            <textarea
+              id={descriptionId}
+              name="description"
+              rows={3}
+              placeholder="Provide any additional context..."
+              className="w-full p-3 border border-gray-300 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent resize-none"
+            />
           </div>
-        </div>
 
+          {/* Amount + Category */}
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label
+                htmlFor={amountId}
+                className="block text-sm font-medium text-black mb-1"
+              >
+                Amount (¥)
+              </label>
+              <input
+                id={amountId}
+                name="amount"
+                type="number"
+                required
+                min={1}
+                inputMode="numeric"
+                placeholder="0"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor={categoryId}
+                className="block text-sm font-medium text-black mb-1"
+              >
+                Category
+              </label>
+              <select
+                id={categoryId}
+                name="category"
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white"
+              >
+                {CATEGORIES.map((cat) => (
+                  <option key={cat.value} value={cat.value}>
+                    {cat.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        {/* Error Message */}
         {error && (
-          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+          <p
+            role="alert"
+            aria-live="assertive"
+            className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2"
+          >
             {error}
           </p>
         )}
 
+        {/* Actions */}
         <div className="flex gap-3 pt-1">
           <button
-            type="button"
+            type="submit"
             onClick={() => router.back()}
             className="flex-1 px-4 py-2 text-sm font-medium text-black bg-slate-200 hover:bg-slate-300 rounded-lg transition-colors"
           >
@@ -161,12 +184,13 @@ export default function NewRequestPage() {
           <button
             type="submit"
             disabled={loading}
+            aria-busy={loading}
             className="flex-1 px-4 py-2 text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 disabled:bg-slate-400 rounded-lg transition-colors"
           >
             {loading ? "Submitting..." : "Submit request"}
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
