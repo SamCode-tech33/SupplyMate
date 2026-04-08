@@ -7,12 +7,15 @@ import { useRef, useEffect, useState } from "react";
 // Marketing Cards Animation ─────────────────────────────────────────────────
 // Five cards converge from the corners toward the center as the user scrolls.
 // A heading shrinks in the background as the cards close in.
-
+// マーケティングカードのアニメーション ─────────────────────────────────────────────────
+// ユーザーがスクロールすると、5枚のカードが四隅から中央に向かって集まってきます。
+// カードが近づいてくるにつれて、背景の見出しが縮小していきます。
 export const MarketingCardsAnimation = () => {
   const ref = useRef(null);
   const [dimensions, setDimensions] = useState({ vw: 1920, vh: 1080 });
 
   // Measure viewport on mount — window is not available during SSR
+  // マウント時にビューポートを測定する — SSR中はwindowオブジェクトが利用できない
   useEffect(() => {
     setDimensions({
       vw: window.innerWidth,
@@ -29,9 +32,11 @@ export const MarketingCardsAnimation = () => {
   });
 
   // Heading shrinks to 25% as cards converge
+  // カードが重なるにつれて見出しのサイズが25%に縮小される
   const textScale = useTransform(scrollYProgress, [0, 1], [1, 0.25]);
 
   // X axis — each card starts off-screen and moves toward center
+  // X軸 — 各カードは画面外から始まり、中央に向かって移動する
   const x1 = useTransform(scrollYProgress, [0, 1], [-128, centerX + 88]);
   const x2 = useTransform(scrollYProgress, [0, 1], [-128, centerX]);
   const x3 = useTransform(scrollYProgress, [0, 1], [128, -centerX - 264]);
@@ -39,6 +44,7 @@ export const MarketingCardsAnimation = () => {
   const x5 = useTransform(scrollYProgress, [0, 1], [128, -centerX + 64]);
 
   // Spring smoothing for X — gives a physical, weighted feel
+  // X軸のスプリングスムージング — 物理的な重みのある感触を与える
   const smoothX1 = useSpring(x1, { stiffness: 40, damping: 10, mass: 1 });
   const smoothX2 = useSpring(x2, { stiffness: 40, damping: 10, mass: 1 });
   const smoothX3 = useSpring(x3, { stiffness: 40, damping: 10, mass: 1 });
@@ -46,6 +52,7 @@ export const MarketingCardsAnimation = () => {
   const smoothX5 = useSpring(x5, { stiffness: 40, damping: 10, mass: 1 });
 
   // Y axis — cards approach from top and bottom
+  // Y軸 — カードは上と下から近づいてくる
   const y1 = useTransform(scrollYProgress, [0, 1], [-128, centerY]);
   const y2 = useTransform(scrollYProgress, [0, 1], [128, -centerY - 20]);
   const y3 = useTransform(scrollYProgress, [0, 1], [0, centerY + 48]);
@@ -53,6 +60,7 @@ export const MarketingCardsAnimation = () => {
   const y5 = useTransform(scrollYProgress, [0, 1], [0, -centerY + 32]);
 
   // Spring smoothing for Y
+  // Y軸のスプリング平滑化
   const smoothY1 = useSpring(y1, { stiffness: 40, damping: 10, mass: 1 });
   const smoothY2 = useSpring(y2, { stiffness: 40, damping: 10, mass: 1 });
   const smoothY3 = useSpring(y3, { stiffness: 40, damping: 10, mass: 1 });
@@ -61,19 +69,22 @@ export const MarketingCardsAnimation = () => {
 
   return (
     // Tall container gives scroll distance for the animation to play out
+    // 背の高いコンテナは、アニメーションが再生されるためのスクロール距離を確保します
     <section
       ref={ref}
       aria-label="Product features"
       className="relative h-[200vh]"
     >
       {/* Sticky viewport — cards animate within this fixed frame */}
+      {/* 固定ビューポート — カードはこの固定された枠内でアニメーションします */}
       <div className="sticky top-0 h-screen w-full bg-slate-800 flex items-center justify-center overflow-hidden">
         {/* Background heading — shrinks as cards converge */}
+        {/* 背景の見出し — カードが重なるにつれて縮小する */}
         <motion.div
           style={{ scale: textScale }}
           className="flex flex-col items-center z-10"
-          // aria-hidden so screen readers get the text once, not duplicated
-          // by the motion wrapper
+          // aria-hidden so screen readers get the text once, not duplicated by the motion wrapper
+          // aria-hidden を設定することで、スクリーンリーダーがテキストを一度だけ読み上げ、motion ラッパーによって重複して読み上げられるのを防ぎます
           aria-hidden="true"
         >
           <h2 className="text-[80px] font-extrabold text-white">
@@ -85,9 +96,11 @@ export const MarketingCardsAnimation = () => {
         </motion.div>
 
         {/* Screen reader alternative for the hidden headings above */}
+        {/* 上記の非表示の見出しに対するスクリーンリーダー用代替テキスト */}
         <p className="sr-only">Simple and secure systems. Same day delivery.</p>
 
         {/* Card 1 — laptop image */}
+        {/* カード1 — ノートパソコンの画像 */}
         <motion.div
           aria-hidden="true"
           className="h-64 w-64 bg-red-900 absolute rounded-3xl"
@@ -107,6 +120,7 @@ export const MarketingCardsAnimation = () => {
         </motion.div>
 
         {/* Card 2 — package delivery image */}
+        {/* カード2 — 荷物の配達画像 */}
         <motion.div
           aria-hidden="true"
           className="h-64 w-72 bg-blue-900 absolute rounded-3xl"
@@ -126,6 +140,7 @@ export const MarketingCardsAnimation = () => {
         </motion.div>
 
         {/* Card 3 — purchase confirmation UI mockup */}
+        {/* カード3 — 購入確認画面のUIモックアップ */}
         <motion.div
           aria-hidden="true"
           className="h-64 w-64 bg-yellow-900 absolute flex flex-col justify-around items-center rounded-3xl"
@@ -149,6 +164,7 @@ export const MarketingCardsAnimation = () => {
         </motion.div>
 
         {/* Card 4 — approval request UI mockup */}
+        {/* カード4 — 承認リクエストのUIモックアップ */}
         <motion.div
           aria-hidden="true"
           className="h-64 w-56 bg-green-900 absolute flex flex-col items-center rounded-3xl justify-around"
@@ -181,6 +197,7 @@ export const MarketingCardsAnimation = () => {
         </motion.div>
 
         {/* Card 5 — office setup image */}
+        {/* カード5 — オフィスのレイアウト画像 */}
         <motion.div
           aria-hidden="true"
           className="h-64 w-64 bg-white absolute rounded-3xl"
@@ -205,7 +222,8 @@ export const MarketingCardsAnimation = () => {
 
 // Marketing Statements Animation ────────────────────────────────────────────
 // Three value proposition statements slide up sequentially as user scrolls.
-
+// マーケティングメッセージのアニメーション ────────────────────────────────────────────
+// ユーザーがスクロールすると、3つの価値提案メッセージが順番にスライドして表示されます。
 export const MarketingStatementsAnimation = () => {
   const ref = useRef(null);
 
@@ -215,6 +233,7 @@ export const MarketingStatementsAnimation = () => {
   });
 
   // Each statement slides up within its own scroll range — staggered triggers
+  // 各ステートメントは、それぞれのスクロール範囲内で上にスライドします — トリガーがずらして設定されています
   const y1 = useTransform(scrollYProgress, [0, 0.2], [600, 0]);
   const y2 = useTransform(scrollYProgress, [0.2, 0.4], [600, 0]);
   const y3 = useTransform(scrollYProgress, [0.4, 0.55], [600, 0]);
@@ -231,6 +250,7 @@ export const MarketingStatementsAnimation = () => {
     >
       <div className="sticky top-0 flex justify-center flex-col items-center h-screen bg-slate-800">
         {/* Statement 1 */}
+        {/* 記述 1 */}
         <motion.div
           style={{ y: smoothY1 }}
           className="text-[80px] text-white font-extrabold flex items-center"
@@ -255,6 +275,7 @@ export const MarketingStatementsAnimation = () => {
         </motion.div>
 
         {/* Statement 2 */}
+        {/* ステートメント 2 */}
         <motion.div
           style={{ y: smoothY2 }}
           className="text-[80px] text-white font-extrabold flex items-center"
@@ -280,6 +301,7 @@ export const MarketingStatementsAnimation = () => {
         </motion.div>
 
         {/* Statement 3 */}
+        {/* ステートメント 3 */}
         <motion.div
           style={{ y: smoothY3 }}
           className="text-[80px] text-white font-extrabold flex items-center mb-16"

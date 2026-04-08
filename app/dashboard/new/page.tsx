@@ -17,6 +17,7 @@ export default function NewRequestPage() {
   const [loading, setLoading] = useState(false);
 
   // input ids following standard useId protocol
+  // 入力IDは標準のuseIdプロトコルに準拠しています
   const id = useId();
   const titleId = `${id}-title`;
   const descriptionId = `${id}-description`;
@@ -24,6 +25,7 @@ export default function NewRequestPage() {
   const categoryId = `${id}-category`;
 
   // Handle form submission - Prevent default form reload - Send request to API - Handle errors + redirect on success
+  // フォーム送信の処理 - フォームの自動再読み込みの防止 - APIへのリクエスト送信 - エラー処理および成功時のリダイレクト
   async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
@@ -64,6 +66,7 @@ export default function NewRequestPage() {
       aria-labelledby="new-request-heading"
     >
       {/* Page Header */}
+      {/* ページヘッダー */}
       <header className="my-12">
         <h1 className="text-3xl font-bold text-slate-100">New Request</h1>
         <p className="text-md text-slate-100 mt-2">
@@ -72,6 +75,7 @@ export default function NewRequestPage() {
       </header>
 
       {/* Form */}
+      {/* フォーム */}
       <form
         onSubmit={handleSubmit}
         className="bg-slate-100 rounded-xl p-6 space-y-8"
@@ -81,6 +85,7 @@ export default function NewRequestPage() {
           <legend className="sr-only">Request details</legend>
 
           {/* Title */}
+          {/* タイトル */}
           <div>
             <label
               htmlFor={titleId}
@@ -100,6 +105,7 @@ export default function NewRequestPage() {
           </div>
 
           {/* Description */}
+          {/* 説明 */}
           <div>
             <label
               htmlFor={descriptionId}
@@ -118,6 +124,7 @@ export default function NewRequestPage() {
           </div>
 
           {/* Amount + Category */}
+          {/* 金額 + カテゴリ */}
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label
@@ -162,6 +169,7 @@ export default function NewRequestPage() {
         </fieldset>
 
         {/* Error Message */}
+        {/* エラーメッセージ */}
         {error && (
           <p
             role="alert"
@@ -173,6 +181,7 @@ export default function NewRequestPage() {
         )}
 
         {/* Actions */}
+        {/* アクション */}
         <div className="flex gap-3 pt-1">
           <button
             type="submit"

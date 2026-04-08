@@ -62,7 +62,7 @@ export const BottomNav = ({ show }: { show: boolean }) => {
           </span>
         </Link>
         <Link
-          href="/login"
+          href="/dashboard"
           className="text-white font-bold text-sm relative overflow-hidden group nav-link border border-slate-200 p-2 rounded-xl"
         >
           <span className="nav-text-default">Dashboard</span>
@@ -76,7 +76,7 @@ export const BottomNav = ({ show }: { show: boolean }) => {
           <span className="nav-text-hover">Log in</span>
         </Link>
         <Link
-          href="/login"
+          href="/signup"
           className="text-white font-bold text-sm relative overflow-hidden group nav-link border border-slate-200 p-2 rounded-xl"
         >
           <span className="nav-text-default">Sign up</span>
@@ -117,7 +117,7 @@ export const TopNav = () => {
           <span className="nav-text-hover">Log in</span>
         </Link>
         <Link
-          href="/login"
+          href="/signup"
           className="mx-4 border py-3 px-6 bg-white rounded-2xl text-black text-lg font-bold relative overflow-hidden group nav-link"
         >
           <span className="nav-text-default">Sign up</span>

@@ -5,6 +5,7 @@ import type { PurchaseRequest, User } from "../app/generated/prisma/client";
 import { RequestStatus } from "../app/generated/prisma/enums";
 
 // Extended request type with serialized dates for client usage
+// クライアント用として、日付をシリアル化した拡張リクエストタイプ
 type RequestWithRelations = Omit<
   PurchaseRequest,
   "amount" | "requestDate" | "reviewedAt" | "createdAt" | "updatedAt"
@@ -43,13 +44,16 @@ const RequestList = ({ requests, isAdmin, statusStyles }: Props) => {
             className="px-6 py-4 flex items-center justify-between gap-4"
           >
             {/* Main content */}
+            {/* メインコンテンツ */}
             <div className="flex-1 min-w-0">
               {/* Header: title + status */}
+              {/* ヘッダー：タイトル + ステータス */}
               <header className="flex items-center gap-2 mb-1">
                 <h3 className="text-sm font-medium text-gray-900 truncate">
                   {req.title}
                 </h3>
                 {/* Status badge */}
+                {/* ステータスバッジ */}
                 <span
                   className={`text-xs px-2 py-0.5 rounded-full font-medium ${statusStyles[req.status]}`}
                 >
@@ -58,6 +62,7 @@ const RequestList = ({ requests, isAdmin, statusStyles }: Props) => {
               </header>
 
               {/* Metadata */}
+              {/* メタデータ */}
               <dl className="flex items-center gap-3 text-xs text-gray-400">
                 {isAdmin && (
                   <div>
@@ -87,6 +92,7 @@ const RequestList = ({ requests, isAdmin, statusStyles }: Props) => {
               </dl>
 
               {/* Optional review note */}
+              {/* 任意のレビューメモ */}
               {req.reviewNote && (
                 <p className="text-xs text-gray-400 mt-1 italic">
                   "{req.reviewNote}"
