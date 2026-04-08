@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 
 // Bottom Nav ────────────────────────────────────────────────────────────────
 // Sticky nav that slides up from bottom after user scrolls past the hero
-
+// ボトムナビゲーション ────────────────────────────────────────────────────────────────
+// ユーザーがヒーローエリアをスクロールして通過すると、下から上にスライドして表示されるスティッキーナビゲーション
 export const BottomNav = ({ show }: { show: boolean }) => {
   return (
     <nav
@@ -16,8 +17,10 @@ export const BottomNav = ({ show }: { show: boolean }) => {
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
         // aria-hidden when not visible — screen readers should not
         // navigate to links that are visually hidden off screen
+        // 表示されていない場合は `aria-hidden` を設定する — スクリーンリーダーは、
+        // 画面外で視覚的に非表示になっているリンクへ移動してはならない
         aria-hidden={!show}
-        className="w-[18vw] bg-slate-600 rounded-3xl px-4 py-3 flex justify-around items-center"
+        className="w-[15vw] bg-slate-600 rounded-3xl px-4 py-3 flex justify-around items-center"
       >
         <Link
           href="/"
@@ -62,13 +65,6 @@ export const BottomNav = ({ show }: { show: boolean }) => {
           </span>
         </Link>
         <Link
-          href="/dashboard"
-          className="text-white font-bold text-sm relative overflow-hidden group nav-link border border-slate-200 p-2 rounded-xl"
-        >
-          <span className="nav-text-default">Dashboard</span>
-          <span className="nav-text-hover">Dashboard</span>
-        </Link>
-        <Link
           href="/login"
           className="text-white font-bold text-sm relative overflow-hidden group nav-link border border-slate-200 p-2 rounded-xl"
         >
@@ -76,11 +72,11 @@ export const BottomNav = ({ show }: { show: boolean }) => {
           <span className="nav-text-hover">Log in</span>
         </Link>
         <Link
-          href="/signup"
+          href="/dashboard"
           className="text-white font-bold text-sm relative overflow-hidden group nav-link border border-slate-200 p-2 rounded-xl"
         >
-          <span className="nav-text-default">Sign up</span>
-          <span className="nav-text-hover">Sign up</span>
+          <span className="nav-text-default">Dashboard</span>
+          <span className="nav-text-hover">Dashboard</span>
         </Link>
       </motion.div>
     </nav>
@@ -89,7 +85,8 @@ export const BottomNav = ({ show }: { show: boolean }) => {
 
 // Top Nav ───────────────────────────────────────────────────────────────────
 // Primary navigation shown at the top of the landing page
-
+// トップナビゲーション ───────────────────────────────────────────────────────────────────
+// ランディングページの上部に表示されるメインナビゲーション
 export const TopNav = () => {
   return (
     <nav
@@ -98,6 +95,7 @@ export const TopNav = () => {
     >
       <div>
         {/* Logo / wordmark */}
+        {/* ロゴ / ワードマーク */}
         <Link
           href="/"
           aria-label="SupplyMate home"
@@ -108,20 +106,21 @@ export const TopNav = () => {
       </div>
 
       {/* Auth links */}
+      {/* 認証リンク */}
       <div className="flex items-center">
         <Link
           href="/login"
-          className="mx-4 border py-3 px-7 border-white rounded-2xl text-lg font-bold relative overflow-hidden group nav-link"
+          className="mx-4 border py-3 px-11 border-white rounded-2xl text-lg font-bold relative overflow-hidden group nav-link"
         >
           <span className="nav-text-default">Log in</span>
           <span className="nav-text-hover">Log in</span>
         </Link>
         <Link
-          href="/signup"
+          href="/login"
           className="mx-4 border py-3 px-6 bg-white rounded-2xl text-black text-lg font-bold relative overflow-hidden group nav-link"
         >
-          <span className="nav-text-default">Sign up</span>
-          <span className="nav-text-hover">Sign up</span>
+          <span className="nav-text-default">Dashboard</span>
+          <span className="nav-text-hover">Dashboard</span>
         </Link>
       </div>
     </nav>
