@@ -54,7 +54,7 @@ export default async function DashboardPage() {
       <div className="flex items-center justify-between w-[50vw] my-12">
         <div>
           <h1 className="text-4xl font-bold text-slate-300">
-            {isAdmin ? "All Requests" : "My Requests"}
+            {isAdmin ? "すべてのリクエスト" : "私のリクエスト"}
           </h1>
           {/* Request count as status message for screen readers */}
           {/* スクリーンリーダー向けのステータスメッセージとしてリクエスト数を表示 */}
@@ -63,7 +63,7 @@ export default async function DashboardPage() {
             aria-atomic="true"
             className="text-md text-slate-300 mt-2"
           >
-            {requests.length} request{requests.length !== 1 ? "s" : ""}
+            {requests.length} リクエスト
           </p>
         </div>
 
@@ -74,7 +74,7 @@ export default async function DashboardPage() {
             href="/dashboard/new"
             className="bg-slate-300 hover:bg-slate-400 text-black text-md font-medium px-4 py-2 rounded-lg transition-colors"
           >
-            New request
+            新しいリクエスト
           </a>
         )}
       </div>
@@ -83,7 +83,7 @@ export default async function DashboardPage() {
       {/* リクエスト一覧 ─────────────────────────────────────────── */}
       {requests.length === 0 ? (
         <div className="text-center py-16 text-gray-400">
-          <p className="text-sm">No requests yet</p>
+          <p className="text-sm">まだリクエストはありません</p>
         </div>
       ) : (
         <RequestList

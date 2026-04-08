@@ -61,7 +61,7 @@ export default function LoginPage() {
 
         {/* Page heading */}
         {/* ページ見出し */}
-        <h1 className="text-[48px] text-black my-16 font-bold">Sign in</h1>
+        <h1 className="text-[48px] text-black my-16 font-bold">ログイン</h1>
 
         {/* Form */}
         {/* フォーム */}
@@ -69,19 +69,19 @@ export default function LoginPage() {
           {/* Input group */}
           {/* 入力グループ */}
           <fieldset className="space-y-4">
-            <legend className="sr-only">Login credentials</legend>
+            <legend className="sr-only">ログイン情報</legend>
 
             {/* Email */}
             {/* メール */}
             <div>
               <label htmlFor={emailId} className="sr-only">
-                Email address
+                メールアドレス
               </label>
               <input
                 id={emailId}
                 name="email"
                 type="email"
-                placeholder="Email *"
+                placeholder="メール *"
                 required
                 autoComplete="email"
                 className="w-full p-3 border text-black border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -92,13 +92,13 @@ export default function LoginPage() {
             {/* パスワード */}
             <div>
               <label htmlFor={passwordId} className="sr-only">
-                Password
+                パスワード
               </label>
               <input
                 id={passwordId}
                 name="password"
                 type="password"
-                placeholder="Password *"
+                placeholder="パスワード *"
                 required
                 autoComplete="current-password"
                 className="w-full p-3 border text-black border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
@@ -126,16 +126,14 @@ export default function LoginPage() {
             aria-busy={loading}
             className="w-full bg-slate-500 hover:bg-slate-700 text-white font-medium py-3 px-4 rounded-xl transition-colors mt-auto"
           >
-            {loading ? "Signing in..." : "Sign in"}
+            {loading ? "ログイン中..." : "ログイン"}
           </button>
         </form>
 
         {/* Demo accounts */}
         {/* デモ口座 */}
         <aside className="mt-6 pt-6 border-t border-gray-100">
-          <h2 className="text-xs text-gray-900 mb-2 font-medium">
-            Demo accounts
-          </h2>
+          <h2 className="text-xs text-gray-900 mb-2 font-medium">デモ口座</h2>
           <ul className="space-y-1 text-xs text-black">
             <li>admin@example.com / admin1234</li>
             <li>alice@example.com / employee1234</li>
@@ -168,10 +166,10 @@ export default function LoginPage() {
           <div className="absolute inset-0 flex flex-col justify-top items-left z-10">
             <div>
               <p className="text-white font-bold text-[36px] mx-16 mt-12">
-                One location for all needs.
+                あらゆる必要なものに対応するワンストップサービス。
               </p>
               <p className="text-white font-semibold text-xl z-10 mx-16 border-b border-gray-300 pb-4">
-                Single account for all your supplies.
+                すべての備品を一つのアカウントで管理。
               </p>
             </div>
 
@@ -184,7 +182,7 @@ export default function LoginPage() {
                 rel="noopener noreferrer"
                 className="flex items-center border-2 border-white w-48 p-2 rounded-lg justify-center mr-4"
               >
-                <span className="sr-only">Download on the App Store</span>
+                <span className="sr-only">App Storeからダウンロード</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="40"
@@ -208,7 +206,7 @@ export default function LoginPage() {
                 rel="noopener noreferrer"
                 className="flex items-center border-2 border-white w-48 p-2 rounded-lg justify-center"
               >
-                <span className="sr-only">Get it on Google Play</span>
+                <span className="sr-only">Google Playで入手</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="40"
@@ -217,7 +215,7 @@ export default function LoginPage() {
                   className="bi bi-google-play mr-4"
                   viewBox="0 0 16 16"
                 >
-                  <title>Google Play Logo</title>
+                  <title>Google Playのロゴ</title>
                   <path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27" />
                 </svg>
                 <div>

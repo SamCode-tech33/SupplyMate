@@ -70,11 +70,7 @@ export const MarketingCardsAnimation = () => {
   return (
     // Tall container gives scroll distance for the animation to play out
     // 背の高いコンテナは、アニメーションが再生されるためのスクロール距離を確保します
-    <section
-      ref={ref}
-      aria-label="Product features"
-      className="relative h-[200vh]"
-    >
+    <section ref={ref} aria-label="製品の特徴" className="relative h-[200vh]">
       {/* Sticky viewport — cards animate within this fixed frame */}
       {/* 固定ビューポート — カードはこの固定された枠内でアニメーションします */}
       <div className="sticky top-0 h-screen w-full bg-slate-800 flex items-center justify-center overflow-hidden">
@@ -88,16 +84,14 @@ export const MarketingCardsAnimation = () => {
           aria-hidden="true"
         >
           <h2 className="text-[80px] font-extrabold text-white">
-            Simple & secure systems
+            シンプルで安全なシステム
           </h2>
-          <h2 className="text-[80px] font-extrabold text-white">
-            Same day delivery
-          </h2>
+          <h2 className="text-[80px] font-extrabold text-white">当日配送</h2>
         </motion.div>
 
         {/* Screen reader alternative for the hidden headings above */}
         {/* 上記の非表示の見出しに対するスクリーンリーダー用代替テキスト */}
-        <p className="sr-only">Simple and secure systems. Same day delivery.</p>
+        <p className="sr-only">シンプルで安全なシステム。当日配送。</p>
 
         {/* Card 1 — laptop image */}
         {/* カード1 — ノートパソコンの画像 */}
@@ -152,14 +146,14 @@ export const MarketingCardsAnimation = () => {
           }}
         >
           <div className="flex flex-col justify-center items-center text-center p-4 bg-yellow-800 rounded-lg">
-            <p>Apple Laptop - $900</p>
+            <p>Apple製ノートパソコン - 90,000円</p>
             <p>- -</p>
             <p>
-              Purchase automatically <br /> added to PnL!
+              購入が自動的に <br /> 損益に反映されます！
             </p>
           </div>
           <div className="py-2 px-12 bg-yellow-800 rounded-lg border border-gray-800">
-            Confirm
+            確認
           </div>
         </motion.div>
 
@@ -183,15 +177,15 @@ export const MarketingCardsAnimation = () => {
               width={60}
               height={60}
             />
-            <p>Kimi Suzuki</p>
+            <p>鈴木 キミ</p>
           </div>
-          <p className="text-xs">Request for standing desk</p>
+          <p className="text-xs">スタンディングデスクの要望</p>
           <div className="flex">
-            <div className="p-3 border border-gray-800 rounded-lg mr-4 bg-white text-black">
-              Accept
+            <div className="p-3 border border-gray-800 rounded-lg mr-4 bg-slate-200 text-black">
+              同意
             </div>
-            <div className="p-3 border border-gray-800 rounded-lg bg-white text-black">
-              Reject
+            <div className="p-3 border border-gray-800 rounded-lg bg-slate-200 text-black">
+              拒否
             </div>
           </div>
         </motion.div>
@@ -243,11 +237,7 @@ export const MarketingStatementsAnimation = () => {
   const smoothY3 = useSpring(y3, { stiffness: 60, damping: 20, mass: 1 });
 
   return (
-    <section
-      ref={ref}
-      aria-label="Value propositions"
-      className="relative h-[150vh]"
-    >
+    <section ref={ref} aria-label="価値提案" className="relative h-[150vh]">
       <div className="sticky top-0 flex justify-center flex-col items-center h-screen bg-slate-800">
         {/* Statement 1 */}
         {/* 記述 1 */}
@@ -271,7 +261,7 @@ export const MarketingStatementsAnimation = () => {
               d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
             />
           </svg>
-          <h2>Request & Recieve</h2>
+          <h2>依頼と受信</h2>
         </motion.div>
 
         {/* Statement 2 */}
@@ -289,7 +279,7 @@ export const MarketingStatementsAnimation = () => {
             className="size-24 mr-4"
             aria-hidden="true"
           >
-            <title>key</title>
+            <title>キー</title>
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -297,7 +287,7 @@ export const MarketingStatementsAnimation = () => {
             />
           </svg>
 
-          <h2>With Secured Approval</h2>
+          <h2>承認済み</h2>
         </motion.div>
 
         {/* Statement 3 */}
@@ -315,7 +305,7 @@ export const MarketingStatementsAnimation = () => {
             className="size-24 mr-4"
             aria-hidden="true"
           >
-            <title>calculator</title>
+            <title>電卓</title>
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -323,7 +313,7 @@ export const MarketingStatementsAnimation = () => {
             />
           </svg>
 
-          <h2>And No Hassle Auto-Accounting</h2>
+          <h2>面倒な手間なしの自動会計</h2>
         </motion.div>
       </div>
     </section>
