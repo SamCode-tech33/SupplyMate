@@ -308,6 +308,8 @@ production-feeling frontend experience.
 - For a more professional feel, seed the DB with a list of supplies accessible on the
   dashboard so that a user could choose from a standard list of supplies offered and admins
   could add to this list, leaving the new request form only for custom requests
+- Include a text JSON file with my own translations for English and Japanese with a
+  state change toggle to view the site in English or Japanese.
 
   ## 妥協点と今後の改善点
 
@@ -318,6 +320,8 @@ production-feeling frontend experience.
 - よりプロフェッショナルな印象を与えるため、ダッシュボード上でアクセス可能な備品リストを
   データベースに初期データとして登録し、ユーザーが提供されている標準的な備品リストから選択できるようにするとともに、
   管理者がこのリストに追加できるようにし、新規リクエストフォームはカスタムリクエスト専用にしておく
+- 英語と日本語の独自翻訳を記載したテキスト形式のJSONファイルを含め、
+  サイト表示言語を切り替えるトグル機能を追加し、英語または日本語でサイトを表示できるようにする。
 
 ---
 
