@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 export const BottomNav = ({ show }: { show: boolean }) => {
   return (
     <nav
-      aria-label="Quick navigation"
+      aria-label="クイックナビゲーション"
       className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[20]"
     >
       <motion.div
@@ -20,11 +20,11 @@ export const BottomNav = ({ show }: { show: boolean }) => {
         // 表示されていない場合は `aria-hidden` を設定する — スクリーンリーダーは、
         // 画面外で視覚的に非表示になっているリンクへ移動してはならない
         aria-hidden={!show}
-        className="w-[15vw] bg-slate-600 rounded-3xl px-4 py-3 flex justify-around items-center"
+        className="w-[16vw] bg-slate-600 rounded-3xl px-4 py-3 flex justify-around items-center"
       >
         <Link
           href="/"
-          aria-label="Home"
+          aria-label="ホーム"
           className="text-white font-bold text-sm relative overflow-hidden group nav-link border border-slate-200 p-2 rounded-full"
         >
           <span className="nav-text-default">
@@ -37,7 +37,7 @@ export const BottomNav = ({ show }: { show: boolean }) => {
               className="size-6"
               aria-hidden="true"
             >
-              <title>home</title>
+              <title>ホーム</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -55,7 +55,7 @@ export const BottomNav = ({ show }: { show: boolean }) => {
               className="size-6"
               aria-hidden="true"
             >
-              <title>home</title>
+              <title>ホーム</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -68,15 +68,15 @@ export const BottomNav = ({ show }: { show: boolean }) => {
           href="/login"
           className="text-white font-bold text-sm relative overflow-hidden group nav-link border border-slate-200 p-2 rounded-xl"
         >
-          <span className="nav-text-default">Log in</span>
-          <span className="nav-text-hover">Log in</span>
+          <span className="nav-text-default">ログイン</span>
+          <span className="nav-text-hover">ログイン</span>
         </Link>
         <Link
           href="/dashboard"
           className="text-white font-bold text-sm relative overflow-hidden group nav-link border border-slate-200 p-2 rounded-xl"
         >
-          <span className="nav-text-default">Dashboard</span>
-          <span className="nav-text-hover">Dashboard</span>
+          <span className="nav-text-default">ダッシュボード</span>
+          <span className="nav-text-hover">ダッシュボード</span>
         </Link>
       </motion.div>
     </nav>
@@ -90,7 +90,7 @@ export const BottomNav = ({ show }: { show: boolean }) => {
 export const TopNav = () => {
   return (
     <nav
-      aria-label="Primary navigation"
+      aria-label="メインナビゲーション"
       className="flex flex-1 items-center justify-between font-sans p-6 z-[20]"
     >
       <div>
@@ -98,7 +98,7 @@ export const TopNav = () => {
         {/* ロゴ / ワードマーク */}
         <Link
           href="/"
-          aria-label="SupplyMate home"
+          aria-label="SupplyMate ホーム"
           className="mx-4 text-3xl font-extrabold"
         >
           SupplyMate
@@ -110,17 +110,17 @@ export const TopNav = () => {
       <div className="flex items-center">
         <Link
           href="/login"
-          className="mx-4 border py-3 px-11 border-white rounded-2xl text-lg font-bold relative overflow-hidden group nav-link"
+          className="mx-4 border py-3 px-14 border-white rounded-2xl text-lg font-bold relative overflow-hidden group nav-link"
         >
-          <span className="nav-text-default">Log in</span>
-          <span className="nav-text-hover">Log in</span>
+          <span className="nav-text-default">ログイン</span>
+          <span className="nav-text-hover">ログイン</span>
         </Link>
         <Link
           href="/login"
           className="mx-4 border py-3 px-6 bg-white rounded-2xl text-black text-lg font-bold relative overflow-hidden group nav-link"
         >
-          <span className="nav-text-default">Dashboard</span>
-          <span className="nav-text-hover">Dashboard</span>
+          <span className="nav-text-default">ダッシュボード</span>
+          <span className="nav-text-hover">ダッシュボード</span>
         </Link>
       </div>
     </nav>

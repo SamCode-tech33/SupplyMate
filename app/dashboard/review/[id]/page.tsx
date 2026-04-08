@@ -66,19 +66,19 @@ export default function ReviewPage() {
       {/* ページヘッダー ──────────────────────────────────────────── */}
       <div className="my-12">
         <h2 className="text-4xl font-semibold text-slate-100">
-          {isApprove ? "Approve Request" : "Reject Request"}
+          {isApprove ? "リクエストを承認する" : "リクエストを拒否する"}
         </h2>
         <p className="text-slate-100 mt-2">
           {isApprove
-            ? "Confirm approval of this purchase request"
-            : "Confirm rejection of this purchase request"}
+            ? "この購入依頼の承認を確認してください"
+            : "この購入依頼の却下を確認する"}
         </p>
       </div>
       {/* Review form ───────────────────────────────────────────── */}
       {/* レビューフォーム ───────────────────────────────────────────── */}
       <form
         onSubmit={handleSubmit}
-        aria-label={isApprove ? "Approve request form" : "Reject request form"}
+        aria-label={isApprove ? "申請書の承認" : "リクエスト拒否フォーム"}
         className="bg-slate-100 rounded-xl border p-6 space-y-5 h-[34vh]"
       >
         <div>
@@ -95,8 +95,8 @@ export default function ReviewPage() {
             htmlFor="reviewNote"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
-            Comment
-            <span className="text-gray-400 font-normal ml-1">(optional)</span>
+            コメント
+            <span className="text-gray-400 font-normal ml-1">(任意)</span>
           </label>
           <textarea
             id={reviewNoteId}
@@ -105,10 +105,10 @@ export default function ReviewPage() {
             onChange={(e) => setReviewNote(e.target.value)}
             placeholder={
               isApprove
-                ? "e.g. Please order from the preferred vendor list"
-                : "e.g. We already have this covered"
+                ? "e.g. 指定業者リストからご注文ください"
+                : "e.g. その件についてはすでに手配済みです"
             }
-            aria-describedby={error ? "review-error" : undefined}
+            aria-describedby={error ? "レビューエラー" : undefined}
             className="w-full h-[140px] px-3 py-2 border mb-2 border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-transparent text-black resize-none"
           />
         </div>
@@ -132,7 +132,7 @@ export default function ReviewPage() {
             onClick={() => router.back()}
             className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 bg-slate-200 hover:bg-slate-300 rounded-lg transition-colors"
           >
-            Cancel
+            キャンセル
           </button>
           <button
             type="submit"
@@ -145,10 +145,10 @@ export default function ReviewPage() {
             }`}
           >
             {loading
-              ? "Saving..."
+              ? "保存中..."
               : isApprove
-                ? "Confirm approval"
-                : "Confirm rejection"}
+                ? "承認を確認する"
+                : "拒否を確認する"}
           </button>
         </div>
       </form>

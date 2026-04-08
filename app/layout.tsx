@@ -4,7 +4,7 @@ import SessionWrapper from "../components/SessionWrapper";
 
 export const metadata: Metadata = {
   title: "SupplyMate",
-  description: "Internal supplies purchase request application",
+  description: "社内備品購入依頼申請書",
   icons: {
     icon: [{ url: "/favicon.ico" }],
   },
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body>
         <SessionWrapper>{children}</SessionWrapper>
       </body>

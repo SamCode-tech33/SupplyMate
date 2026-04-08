@@ -50,11 +50,11 @@ export default function Home() {
 
       {/* Hero Section ──────────────────────────────────────────────── */}
       <section
-        aria-label="Hero"
+        aria-label="ヒーロー"
         className="flex justify-end items-end z-[-2] h-[89.5vh]"
       >
         <h1 className="text-white font-bold text-[64px] opacity-70 z-10 ml-10 mb-12">
-          Centralize your supply requisitions with SupplyMate
+          SupplyMateで資材発注を一元管理
         </h1>
 
         {/* Video background — decorative, hidden from screen readers */}
@@ -75,7 +75,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col mb-16 mr-16">
           <p className="text-white font-semibold text-3xl opacity-80 z-10 w-[512px] h-36">
-            Single destination for all your payments.
+            あらゆるお支払いを一か所でまとめて管理。
           </p>
 
           {/* App store links ──────────────────────────────────────────────── */}
@@ -84,7 +84,7 @@ export default function Home() {
               href="https://www.apple.com/app-store/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Download SupplyMate on the App Store"
+              aria-label="App StoreでSupplyMateをダウンロード"
               className="flex items-center border border-white w-48 p-2 rounded-lg justify-center mr-4"
             >
               <svg
@@ -96,7 +96,7 @@ export default function Home() {
                 viewBox="0 0 16 16"
                 aria-hidden="true"
               >
-                <title>Apple Logo</title>
+                <title>Appleのロゴ</title>
                 <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282" />
               </svg>
               <div>
@@ -108,7 +108,7 @@ export default function Home() {
               href="https://play.google.com/store/games"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Get SupplyMate on Google Play"
+              aria-label="Google PlayでSupplyMateを入手"
               className="flex items-center border border-white w-48 p-2 rounded-lg justify-center"
             >
               <svg
@@ -120,7 +120,7 @@ export default function Home() {
                 viewBox="0 0 16 16"
                 aria-hidden="true"
               >
-                <title>Google Play Logo</title>
+                <title>Google Playのロゴ</title>
                 <path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27" />
               </svg>
               <div>
@@ -133,7 +133,7 @@ export default function Home() {
       </section>
 
       {/* Marketing Section ──────────────────────────────────────────────── */}
-      <section aria-label="Features">
+      <section aria-label="特長">
         <MarketingCardsAnimation />
         <MarketingStatementsAnimation />
       </section>
@@ -141,54 +141,54 @@ export default function Home() {
       {/* Pricing Section ──────────────────────────────────────────────── */}
 
       <section
-        aria-label="Pricing"
+        aria-label="価格"
         className="flex justify-around items-center bg-slate-300 h-[100vh]"
       >
         <PricingCard offsetX={500}>
-          <h2 className="text-4xl">Studio Plan</h2>
+          <h2 className="text-3xl">スタジオプラン</h2>
           <ul className="text-left text-lg">
-            <li>- 10 Requisitions a month</li>
-            <li>- Paid supply upgrades</li>
-            <li>- Returns unavailable</li>
+            <li>- 月10件の発注</li>
+            <li>- 有料の装備強化</li>
+            <li>- 返品不可</li>
           </ul>
-          <p className="text-2xl">$50/Mo.</p>
+          <p className="text-2xl">月額5,000円</p>
           <button
             type="button"
             className="p-4 border border-slate-200 rounded-xl w-1/2 hover:bg-slate-600"
           >
-            Inquire
+            お問い合わせ
           </button>
         </PricingCard>
 
         <PricingCard offsetX={0}>
-          <h2 className="text-4xl">Office Plan</h2>
+          <h2 className="text-3xl">オフィスプラン</h2>
           <ul className="text-left text-lg">
-            <li>- 50 requisitions a month</li>
-            <li>- Paid supply upgrades</li>
-            <li>- Return supplies for 50% cost</li>
+            <li>- 月50件の発注</li>
+            <li>- 有料の装備強化</li>
+            <li>- 返品時の送料は半額</li>
           </ul>
-          <p className="text-2xl">$200/Mo.</p>
+          <p className="text-2xl">月額20,000円</p>
           <button
             type="button"
             className="p-4 border border-slate-200 rounded-xl w-1/2 hover:bg-slate-600"
           >
-            Inquire
+            お問い合わせ
           </button>
         </PricingCard>
 
         <PricingCard offsetX={-500}>
-          <h2 className="text-4xl">Enterprise Plan</h2>
+          <h2 className="text-3xl">エンタープライズプラン</h2>
           <ul className="text-left text-lg">
-            <li>- Unlimited requisitions</li>
-            <li>- Free supply upgrades</li>
-            <li>- Return supplies for 50% cost</li>
+            <li>- 無制限の調達依頼</li>
+            <li>- 無料の装備強化</li>
+            <li>- 返品時の送料は半額</li>
           </ul>
-          <p className="text-2xl">$500/Mo.</p>
+          <p className="text-2xl">月額50,000円</p>
           <button
             type="button"
             className="p-4 border border-slate-200 rounded-xl w-1/2 hover:bg-slate-600"
           >
-            Inquire
+            お問い合わせ
           </button>
         </PricingCard>
       </section>

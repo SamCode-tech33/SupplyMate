@@ -3,10 +3,10 @@ export default function DashboardLoading() {
     <section
       aria-busy="true"
       aria-live="polite"
-      aria-label="Loading requests"
+      aria-label="リクエストを読み込んでいます"
       className="bg-slate-200 rounded-xl border border-gray-200 divide-y divide-gray-100 w-[50vw] mt-48"
     >
-      <p className="sr-only">Loading requests...</p>
+      <p className="sr-only">リクエストを読み込んでいます...</p>
 
       {Array.from({ length: 5 }).map((_, i) => {
         const Id = `Skel-${i}`;

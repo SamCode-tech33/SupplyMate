@@ -4,11 +4,11 @@ import { useState, useId } from "react";
 import { useRouter } from "next/navigation";
 
 const CATEGORIES = [
-  { value: "OFFICE_SUPPLIES", label: "Office Supplies" },
-  { value: "ELECTRONICS", label: "Electronics" },
-  { value: "FURNITURE", label: "Furniture" },
-  { value: "SOFTWARE", label: "Software" },
-  { value: "OTHER", label: "Other" },
+  { value: "OFFICE_SUPPLIES", label: "オフィス用品" },
+  { value: "ELECTRONICS", label: "電子機器" },
+  { value: "FURNITURE", label: "家具" },
+  { value: "SOFTWARE", label: "ソフトウェア" },
+  { value: "OTHER", label: "その他" },
 ];
 
 export default function NewRequestPage() {
@@ -63,14 +63,14 @@ export default function NewRequestPage() {
   return (
     <section
       className="flex flex-col w-[40vw]"
-      aria-labelledby="new-request-heading"
+      aria-labelledby="新しいリクエストのヘッダー"
     >
       {/* Page Header */}
       {/* ページヘッダー */}
       <header className="my-12">
-        <h1 className="text-3xl font-bold text-slate-100">New Request</h1>
+        <h1 className="text-3xl font-bold text-slate-100">新規リクエスト</h1>
         <p className="text-md text-slate-100 mt-2">
-          Submit a new supplies purchase request for approval
+          新しい備品購入申請を提出し、承認を得る
         </p>
       </header>
 
@@ -82,7 +82,7 @@ export default function NewRequestPage() {
         noValidate
       >
         <fieldset disabled={loading} className="space-y-6">
-          <legend className="sr-only">Request details</legend>
+          <legend className="sr-only">詳細をリクエストする</legend>
 
           {/* Title */}
           {/* タイトル */}
@@ -91,14 +91,14 @@ export default function NewRequestPage() {
               htmlFor={titleId}
               className="block text-sm font-medium text-black mb-1"
             >
-              Title
+              タイトル
             </label>
             <input
               id={titleId}
-              name="title"
+              name="タイトル"
               type="text"
               required
-              placeholder="e.g. Monitor Purchase"
+              placeholder="e.g. モニターの購入"
               autoComplete="off"
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-black focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
             />
@@ -111,12 +111,12 @@ export default function NewRequestPage() {
               htmlFor={descriptionId}
               className="block text-sm font-medium text-black mb-1"
             >
-              Description
-              <span className="text-gray-400 font-normal ml-1">(optional)</span>
+              説明
+              <span className="text-gray-400 font-normal ml-1">(任意)</span>
             </label>
             <textarea
               id={descriptionId}
-              name="description"
+              name="説明"
               rows={3}
               placeholder="Provide any additional context..."
               className="w-full p-3 border border-gray-300 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent resize-none"
@@ -131,11 +131,11 @@ export default function NewRequestPage() {
                 htmlFor={amountId}
                 className="block text-sm font-medium text-black mb-1"
               >
-                Amount (¥)
+                金額 (¥)
               </label>
               <input
                 id={amountId}
-                name="amount"
+                name="金額"
                 type="number"
                 required
                 min={1}
@@ -150,11 +150,11 @@ export default function NewRequestPage() {
                 htmlFor={categoryId}
                 className="block text-sm font-medium text-black mb-1"
               >
-                Category
+                カテゴリ
               </label>
               <select
                 id={categoryId}
-                name="category"
+                name="カテゴリ"
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white"
               >
@@ -188,7 +188,7 @@ export default function NewRequestPage() {
             onClick={() => router.back()}
             className="flex-1 px-4 py-2 text-sm font-medium text-black bg-slate-200 hover:bg-slate-300 rounded-lg transition-colors"
           >
-            Cancel
+            キャンセル
           </button>
           <button
             type="submit"
@@ -196,7 +196,7 @@ export default function NewRequestPage() {
             aria-busy={loading}
             className="flex-1 px-4 py-2 text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 disabled:bg-slate-400 rounded-lg transition-colors"
           >
-            {loading ? "Submitting..." : "Submit request"}
+            {loading ? "送信中..." : "リクエストを送信"}
           </button>
         </div>
       </form>
