@@ -7,6 +7,8 @@ import {
 } from "../app/generated/prisma/enums.js";
 import { PrismaPg } from "@prisma/adapter-pg";
 
+// Initialize Prisma with PostgreSQL adapter using env connection string
+// 環境変数で指定された接続文字列を使用して、PostgreSQLアダプターでPrismaを初期化する
 const prisma = new PrismaClient({
   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
 });
@@ -14,9 +16,15 @@ const prisma = new PrismaClient({
 async function main() {
   console.log("Seeding database...");
 
+  // Hash passwords for demo users
+  // デモユーザーのパスワードをハッシュ化
   const adminPassword = await bcrypt.hash("admin1234", 10);
   const employeePassword = await bcrypt.hash("employee1234", 10);
 
+  // Upsert ensures users are created if they don't exist,
+  // or left unchanged if they already exist (idempotent seed)
+  // Upsert を使用すると、ユーザーがまだ存在しない場合は作成され、
+  // すでに存在する場合は変更されません（冪等性のあるシード）
   const admin = await prisma.user.upsert({
     where: { email: "admin@example.com" },
     update: {},
@@ -50,8 +58,12 @@ async function main() {
     },
   });
 
+  // Log created users for visibility during development
+  // 開発中の可視性を確保するため、作成されたユーザーをログに記録する
   console.log(`Users: ${admin.email}, ${alice.email}, ${bob.email}`);
 
+  // Seed purchase requests with various statuses and categories
+  // ステータスやカテゴリが異なる種子の購入リクエスト
   await prisma.purchaseRequest.createMany({
     skipDuplicates: true,
     data: [
@@ -106,6 +118,8 @@ async function main() {
   console.log("   Employee → bob@example.com    / employee1234");
 }
 
+// Execute seed script with proper error handling and cleanup
+// 適切なエラー処理とクリーンアップを行ってシードスクリプトを実行する
 main()
   .catch((e) => {
     console.error("❌ Seed failed:", e);

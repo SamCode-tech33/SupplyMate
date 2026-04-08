@@ -2,8 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-
-// Interface for the sparkle effect on hover
 interface Sparkle {
   x: number;
   y: number;
@@ -27,8 +25,11 @@ const PricingCard = ({ children, offsetX }: PricingCardProps) => {
 
   // Animation loop for the sparkle effect on hover
   // in useEffect as this animation is a closed system
+  // ホバー時のスパークル効果のアニメーションループ
+  // このアニメーションは閉じたシステムであるため、useEffect内で実行する
   useEffect(() => {
     // Function to spawn sparkles at random positions along the border of the card
+    // カードの縁に沿ってランダムな位置にキラキラを表示する関数
     const spawnBorderSparkles = () => {
       const card = cardRef.current;
       if (!card) return;
@@ -36,26 +37,29 @@ const PricingCard = ({ children, offsetX }: PricingCardProps) => {
       const { width, height } = card.getBoundingClientRect();
 
       // Calculating the perimeter to generate sparkles along the edges
+      // 周囲の長さを計算し、縁に沿ってきらめきを生成する
       const perimeter = 2 * (width + height);
       const pos = Math.random() * perimeter;
 
       // Randomly select the position along the card's border
+      // カードの縁に沿って位置をランダムに選択する
       let x: number, y: number;
       if (pos < width) {
         x = pos;
-        y = 0; // top edge
+        y = 0;
       } else if (pos < width + height) {
         x = width;
-        y = pos - width; // right edge
+        y = pos - width;
       } else if (pos < 2 * width + height) {
         x = width - (pos - width - height);
-        y = height; // bottom edge
+        y = height;
       } else {
         x = 0;
-        y = height - (pos - 2 * width - height); // left edge
+        y = height - (pos - 2 * width - height);
       }
 
       // Push a new sparkle object to the array
+      // 新しいスパークルオブジェクトを配列に追加する
       sparklesRef.current.push({
         x,
         y,
@@ -79,13 +83,16 @@ const PricingCard = ({ children, offsetX }: PricingCardProps) => {
 
       if (isHovering.current) {
         // spawn a few sparkles per frame
+        // 1フレームごとにいくつかのスパークルを生成する
         for (let i = 0; i < 3; i++) spawnBorderSparkles();
       }
 
       // Filter out sparkles that have no "life" left
+      // 「生命力」が尽きたスパークルを除外する
       sparklesRef.current = sparklesRef.current.filter((s) => s.life > 0);
 
       // Draw each sparkle with a fading effect
+      // 各スパークルをフェード効果をつけて描画する
       for (const s of sparklesRef.current) {
         s.x += s.vx;
         s.y += s.vy;
@@ -97,6 +104,7 @@ const PricingCard = ({ children, offsetX }: PricingCardProps) => {
         ctx.shadowColor = "gold";
         ctx.shadowBlur = 6;
         // draw a 4-pointed star
+        // 4つの角を持つ星を描く
         ctx.beginPath();
         for (let i = 0; i < 4; i++) {
           const angle = (i / 4) * Math.PI * 2;

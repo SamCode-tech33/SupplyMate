@@ -6,7 +6,9 @@ import { useState, useEffect, useId } from "react";
 // Review Page ───────────────────────────────────────────────────────────────
 // Allows admins to approve or reject a pending purchase request.
 // Action and request ID are read from the URL — no extra state needed.
-
+// 確認ページ ───────────────────────────────────────────────────────────────
+// 管理者が保留中の購入リクエストを承認または却下できるようにします。
+// アクションとリクエストIDはURLから読み取られるため、追加の状態管理は不要です。
 export default function ReviewPage() {
   const router = useRouter();
   const params = useParams();
@@ -21,6 +23,7 @@ export default function ReviewPage() {
   const [title, setTitle] = useState<string | null>(null);
 
   // Fetch the request title on mount to display in the form heading
+  // マウント時にリクエストのタイトルを取得し、フォームの見出しに表示する
   useEffect(() => {
     fetch(`/api/requests/${params.id}`)
       .then((res) => {
@@ -60,6 +63,7 @@ export default function ReviewPage() {
   return (
     <main className="w-[40vw]">
       {/* Page header ──────────────────────────────────────────── */}
+      {/* ページヘッダー ──────────────────────────────────────────── */}
       <div className="my-12">
         <h2 className="text-4xl font-semibold text-slate-100">
           {isApprove ? "Approve Request" : "Reject Request"}
@@ -71,6 +75,7 @@ export default function ReviewPage() {
         </p>
       </div>
       {/* Review form ───────────────────────────────────────────── */}
+      {/* レビューフォーム ───────────────────────────────────────────── */}
       <form
         onSubmit={handleSubmit}
         aria-label={isApprove ? "Approve request form" : "Reject request form"}
@@ -85,6 +90,7 @@ export default function ReviewPage() {
             {title ?? "Loading..."}
           </h2>
           {/* Textarea label — htmlFor must match textarea id */}
+          {/* テキストエリアのラベル — htmlFor はテキストエリアの ID と一致する必要があります */}
           <label
             htmlFor="reviewNote"
             className="block text-sm font-medium text-gray-700 mb-1"
@@ -108,6 +114,7 @@ export default function ReviewPage() {
         </div>
 
         {/* Error message — announced to screen readers via role="alert" */}
+        {/* エラーメッセージ — role="alert" を通じてスクリーンリーダーに通知されます */}
         {error && (
           <p
             role="alert"
@@ -118,6 +125,7 @@ export default function ReviewPage() {
         )}
 
         {/* Actions ──────────────────────────────────────────────── */}
+        {/* アクション ──────────────────────────────────────────────── */}
         <div className="flex gap-3 pt-1">
           <button
             type="button"

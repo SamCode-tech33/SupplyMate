@@ -1,11 +1,15 @@
 // Footer ────────────────────────────────────────────────────────────────────
 // Placeholder links are intentionally non-functional (demo project)
 
+// フッター ────────────────────────────────────────────────────────────────────
+// プレースホルダーのリンクは、デモプロジェクトのため意図的に機能していません
+
 const Footer = () => {
   return (
     <footer className="bg-slate-900 text-slate-400 py-16 px-12">
       <div className="flex justify-between mb-12">
         {/* Brand and tagline */}
+        {/* ブランド名とキャッチコピー */}
         <div>
           <p className="text-white font-extrabold text-2xl mb-4">SupplyMate</p>
           <p className="text-sm w-64">
@@ -14,6 +18,7 @@ const Footer = () => {
         </div>
 
         {/* Link columns */}
+        {/* 列のリンク */}
         <nav aria-label="Footer navigation" className="flex gap-24">
           <div className="flex flex-col gap-3">
             <h2 className="text-white font-bold mb-1">Product</h2>
@@ -90,6 +95,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom bar */}
+      {/* ボトムバー */}
       <div className="border-t border-slate-700 pt-8 flex justify-between items-center text-sm">
         <p>© {new Date().getFullYear()} SupplyMate. All rights reserved.</p>
         <p className="text-xs text-slate-500 w-96 text-right">

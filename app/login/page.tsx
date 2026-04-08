@@ -6,6 +6,10 @@ import { useRouter } from "next/navigation";
 import { useId } from "react";
 import Link from "next/link";
 
+// Login Page ───────────────────────────────────────────────────────────────
+// Login credentials are checked against data in DB and if correct user is sent to the dashboard
+// ログインページ ───────────────────────────────────────────────────────────────
+// ログイン情報はデータベース内のデータと照合され、正しい場合はダッシュボードへ遷移する
 export default function LoginPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
@@ -42,11 +46,13 @@ export default function LoginPage() {
   return (
     <main className="flex items-center justify-between w-[100vw] z-[-10]">
       {/* Auth Section  ───────────────────────────────────────────────── */}
+      {/* 認証セクション  ───────────────────────────────────────────────── */}
       <section
         aria-label="login"
         className="w-[40vw] h-screen bg-slate-200 p-12 flex flex-col min-h-screen"
       >
         {/* Brand / Home link */}
+        {/* ブランド / ホームリンク */}
         <header>
           <Link href="/" className="text-4xl font-bold text-slate-800">
             SupplyMate
@@ -54,15 +60,19 @@ export default function LoginPage() {
         </header>
 
         {/* Page heading */}
+        {/* ページ見出し */}
         <h1 className="text-[48px] text-black my-16 font-bold">Sign in</h1>
 
         {/* Form */}
+        {/* フォーム */}
         <form onSubmit={handleSubmit} className="flex flex-col flex-1">
           {/* Input group */}
+          {/* 入力グループ */}
           <fieldset className="space-y-4">
             <legend className="sr-only">Login credentials</legend>
 
             {/* Email */}
+            {/* メール */}
             <div>
               <label htmlFor={emailId} className="sr-only">
                 Email address
@@ -79,6 +89,7 @@ export default function LoginPage() {
             </div>
 
             {/* Password */}
+            {/* パスワード */}
             <div>
               <label htmlFor={passwordId} className="sr-only">
                 Password
@@ -95,6 +106,7 @@ export default function LoginPage() {
             </div>
 
             {/* Error message */}
+            {/* エラーメッセージ */}
             {error && (
               <p
                 id={errorId}
@@ -107,6 +119,7 @@ export default function LoginPage() {
           </fieldset>
 
           {/* Submit */}
+          {/* 送信 */}
           <button
             type="submit"
             disabled={loading}
@@ -118,6 +131,7 @@ export default function LoginPage() {
         </form>
 
         {/* Demo accounts */}
+        {/* デモ口座 */}
         <aside className="mt-6 pt-6 border-t border-gray-100">
           <h2 className="text-xs text-gray-900 mb-2 font-medium">
             Demo accounts
@@ -130,12 +144,14 @@ export default function LoginPage() {
       </section>
 
       {/* Visual Marketing Section ───────────────────────────────────────────────── */}
+      {/* ビジュアルマーケティングのセクション ───────────────────────────────────────────────── */}
       <aside
         aria-hidden="true"
         className="flex justify-center items-center bg-slate-200 w-[60vw] z-[-2] h-screen"
       >
         <div className="relative w-[56vw] h-[92vh]">
           {/* Decorative video */}
+          {/* 装飾用動画 */}
           <video
             autoPlay
             loop
@@ -148,6 +164,7 @@ export default function LoginPage() {
           </video>
 
           {/* Overlay content */}
+          {/* オーバーレイコンテンツ */}
           <div className="absolute inset-0 flex flex-col justify-top items-left z-10">
             <div>
               <p className="text-white font-bold text-[36px] mx-16 mt-12">
@@ -159,6 +176,7 @@ export default function LoginPage() {
             </div>
 
             {/* Store links */}
+            {/* リンクを保存 */}
             <nav className="flex items-center mx-16 mt-[600px]">
               <Link
                 href="https://www.apple.com/app-store/"
