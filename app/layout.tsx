@@ -5,9 +5,7 @@ import SessionWrapper from "../components/SessionWrapper";
 export const metadata: Metadata = {
   title: "SupplyMate",
   description: "社内備品購入依頼申請書",
-  icons: {
-    icon: [{ url: "/favicon.ico" }],
-  },
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
