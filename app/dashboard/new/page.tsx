@@ -95,7 +95,7 @@ export default function NewRequestPage() {
             </label>
             <input
               id={titleId}
-              name="タイトル"
+              name="title"
               type="text"
               required
               placeholder="e.g. モニターの購入"
@@ -116,7 +116,7 @@ export default function NewRequestPage() {
             </label>
             <textarea
               id={descriptionId}
-              name="説明"
+              name="description"
               rows={3}
               placeholder="Provide any additional context..."
               className="w-full p-3 border border-gray-300 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent resize-none"
@@ -135,7 +135,7 @@ export default function NewRequestPage() {
               </label>
               <input
                 id={amountId}
-                name="金額"
+                name="amount"
                 type="number"
                 required
                 min={1}
@@ -154,7 +154,7 @@ export default function NewRequestPage() {
               </label>
               <select
                 id={categoryId}
-                name="カテゴリ"
+                name="category"
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg text-black text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent bg-white"
               >
@@ -184,7 +184,7 @@ export default function NewRequestPage() {
         {/* アクション */}
         <div className="flex gap-3 pt-1">
           <button
-            type="submit"
+            type="button"
             onClick={() => router.back()}
             className="flex-1 px-4 py-2 text-sm font-medium text-black bg-slate-200 hover:bg-slate-300 rounded-lg transition-colors"
           >
