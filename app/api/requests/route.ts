@@ -31,14 +31,14 @@ export async function POST(req: Request) {
   // Basic server-side validation
   if (!title || !amount || !category) {
     return NextResponse.json(
-      { error: "Missing required fields" },
+      { error: "必須項目が入力されていません" },
       { status: 400 },
     );
   }
 
   if (amount <= 0) {
     return NextResponse.json(
-      { error: "Amount must be greater than zero" },
+      { error: "金額はゼロより大きくなければなりません" },
       { status: 400 },
     );
   }
